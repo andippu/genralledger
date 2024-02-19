@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: geledger-services
+  config:
+    import:
+      optional:configserver:http://localhost:9502
+
