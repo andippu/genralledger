@@ -10,6 +10,7 @@ import journal.ledgerjournal.services.ServiceMasterJurnal;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -42,4 +43,11 @@ public class ControllerMasterJurnal {
 	public BigDecimal getSumCredit(String novoucher) {
 		return servMstJur.getSumCredit(novoucher);
 	}
+	
+	@GetMapping("/msjur/getjournalSingle")
+	public Optional<MasterJurnal> getJournal(String voucher) {
+		return servMstJur.getJourna(voucher);
+	}
+	
+	
 }

@@ -13,6 +13,7 @@ import journal.ledgerjournal.models.MasterJurnalCompKey;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @CrossOrigin("http://localhost:4200")
@@ -22,6 +23,8 @@ public interface IMasterJurnalRepository extends JpaRepository<MasterJurnal,Mast
 	
 	@Query(value="SELECT * FROM MASTER_JURNAL s WHERE TO_CHAR(s.MJ_DATE,'Monyyyy')=?1",nativeQuery = true)
 	List<MasterJurnal> getMstJurByMonth(String month);
+	
+	Optional<MasterJurnal> findByMjNoVoucher(String voucher);
 	
     @Procedure(procedureName = "P_JOURNAL_SUM_CREDIT")
     BigDecimal getSumCreditJournal(String novoucher);

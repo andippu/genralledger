@@ -35,6 +35,9 @@ public class ServiceMasterJurnal {
 		return repoMsJur.getSumCreditJournal(novoucher);		
 	}
 	
+	public Optional<MasterJurnal> getJourna(String voucher) {
+		return repoMsJur.findByMjNoVoucher(voucher);
+	}
 	
 
 
