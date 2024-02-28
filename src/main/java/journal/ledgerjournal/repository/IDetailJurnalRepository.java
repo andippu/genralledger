@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface IDetailJurnalRepository extends JpaRepository<DetailJurnal, String>{
 	List<DetailJurnal> findByDjMjNoVoucherOrderByDjSeq(String voucher);
 	
-	@Query(value="SELECT * FROM DETAIL_JURNAL s WHERE s.DJ_MJ_NO_VOUCHER=?1 AND s.DJ_SEQ=?2",nativeQuery = true)
+	@Query(value="SELECT * FROM DETAIL_JURNAL s WHERE s.DJ_MJ_NO_VOUCHER=?1 AND s.DJ_SEQ=?2 ORDER BY s.DJ_SEQ",nativeQuery = true)
 	List<DetailJurnal> getDtlJurSingle(String voucher, Integer djSeq);
 
 }

@@ -39,6 +39,10 @@ public class ServiceMasterJurnal {
 		return repoMsJur.findByMjNoVoucher(voucher);
 	}
 	
+	public String saveUpdateMstJurnal(MasterJurnal mstjur) {
+		repoMsJur.save(mstjur);
+		return "Submit Successfully";
+	}
 
 
 }

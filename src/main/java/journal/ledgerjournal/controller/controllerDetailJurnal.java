@@ -3,6 +3,8 @@ package journal.ledgerjournal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import journal.ledgerjournal.models.DetailJurnal;
@@ -27,6 +29,12 @@ public class controllerDetailJurnal {
 	@GetMapping("/msjur/getdtjursingle")
 	public List<DetailJurnal> getDtlJurnalSingle(String voucher, Integer seqno){
 		return servdtljurnal.getDtlJurnalSingle(voucher, seqno);
+	}
+	
+	@PostMapping("/msjur/saveupddtljurnal")
+	public String saveUpdateDtlJurnal (@RequestBody DetailJurnal dtljur) {
+		return servdtljurnal.saveUpdateDtlJurnal(dtljur);
+		
 	}
 
 }

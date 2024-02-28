@@ -23,5 +23,10 @@ public class ServiceDetailJurnal {
 	public List<DetailJurnal> getDtlJurnalSingle(String Voucher, Integer seqNo){
 		return repoDtljur.getDtlJurSingle(Voucher,seqNo);
 	}
+	
+	public String saveUpdateDtlJurnal (DetailJurnal dtljur) {
+		repoDtljur.save(dtljur);
+		return "Submit Successfully";
+	}
 
 }
