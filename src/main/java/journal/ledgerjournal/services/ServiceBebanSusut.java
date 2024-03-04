@@ -21,6 +21,10 @@ public class ServiceBebanSusut {
 		return repoBebanSst.getBebanByDate(day);
 	}
 	
+	public List<BebanSusut> getBebanSstByMonth(String month){
+		return repoBebanSst.getBebanByMonth(month);
+	}
+	
 	public Optional<BebanSusut> getBebanSstSingle(String susutNo){
 		return repoBebanSst.findById(susutNo);
 	}

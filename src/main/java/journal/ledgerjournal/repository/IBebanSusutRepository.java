@@ -15,7 +15,10 @@ import java.util.Optional;
 @Repository
 
 public interface IBebanSusutRepository extends JpaRepository<BebanSusut,String>{
-	@Query(value="SELECT * FROM BEBAN_SUSUT_INSERT WHERE to_char(CREATED_DATE,'Mon dd yyyy')=?1",nativeQuery = true)
+	@Query(value="SELECT * FROM BEBAN_SUSUT_INSERT WHERE to_char(SUSUT_TGL_PEROLEHAN,'Mon dd yyyy')=?1 ORDER BY SUSUT_TGL_PEROLEHAN ",nativeQuery = true)
 	List<BebanSusut> getBebanByDate(String day);
+	
+	@Query(value="SELECT * FROM BEBAN_SUSUT_INSERT WHERE to_char(SUSUT_TGL_PEROLEHAN,'Monyyyy')=?1 ORDER BY SUSUT_TGL_PEROLEHAN ",nativeQuery = true)
+	List<BebanSusut> getBebanByMonth(String Month);
 
 }

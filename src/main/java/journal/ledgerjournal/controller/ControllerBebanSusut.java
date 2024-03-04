@@ -3,6 +3,7 @@ package journal.ledgerjournal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,11 +26,18 @@ public class ControllerBebanSusut {
 		return servBbnSst.getBebanSstByDay(day);
 	}
 	
+	@GetMapping("/msjur/getsusutmonthlist")
+	public List<BebanSusut> getBebanSstByMonth(String month){
+		return servBbnSst.getBebanSstByMonth(month);
+	}
+
+	
 	@GetMapping("/msjur/getsusutsingle")
 	public Optional<BebanSusut> getBebanSstSingle(String susutNo){
 		return servBbnSst.getBebanSstSingle(susutNo);
 	}
 	
+	@PostMapping("/msjur/saveupdpenyusutan")
 	public String addUpdateSusut(@RequestBody BebanSusut bs) {
 		return servBbnSst.addUpdateSusut(bs);
 		
