@@ -34,4 +34,12 @@ public class ServiceBebanSusut {
 		return "Submit Susut Successfully";
 	}
 	
+	public String getProcSstDtl(String susutNo) {
+		return repoBebanSst.getProcSstDtl(susutNo);
+	}
+	
+	public String getJournalSst() {
+		return repoBebanSst.getProcSstJournal();
+	}
+	
 }

@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
-
 public class ControllerBebanSusut {
 	@Autowired
 	ServiceBebanSusut servBbnSst;
@@ -30,7 +29,6 @@ public class ControllerBebanSusut {
 	public List<BebanSusut> getBebanSstByMonth(String month){
 		return servBbnSst.getBebanSstByMonth(month);
 	}
-
 	
 	@GetMapping("/msjur/getsusutsingle")
 	public Optional<BebanSusut> getBebanSstSingle(String susutNo){
@@ -39,8 +37,17 @@ public class ControllerBebanSusut {
 	
 	@PostMapping("/msjur/saveupdpenyusutan")
 	public String addUpdateSusut(@RequestBody BebanSusut bs) {
-		return servBbnSst.addUpdateSusut(bs);
-		
+		return servBbnSst.addUpdateSusut(bs);		
+	}
+	
+	@GetMapping("/msjur/procSstDtl")
+	public String getProcSstDtl(String susutNo) {
+		return servBbnSst.getProcSstDtl(susutNo);
+	}
+	
+	@GetMapping("/msjur/procSstJournal")
+	public String getJournalSst() {
+		return servBbnSst.getJournalSst();
 	}
 
 }
