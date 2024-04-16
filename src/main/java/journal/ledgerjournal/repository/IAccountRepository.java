@@ -15,4 +15,7 @@ import java.util.Optional;
 @Repository
 public interface IAccountRepository extends JpaRepository<Account, String> {
 
+	@Query(value="select s.accDesc from Account s where s.accNo=?1")
+	public String getAccDesc(String ad);
+	
 }

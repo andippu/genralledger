@@ -37,10 +37,10 @@ public class Account {
 	 private String accDbCr;
 	 
 	 @Column(name="ACC_NILAI")
-	 private BigInteger accNilai;
+	 private BigDecimal accNilai;
 	 
 	 @Column(name="ACC_SLD_AKHIR")
-	 private BigInteger accSldAkhir;
+	 private BigDecimal accSldAkhir;
 	 
 	 @Column(name="ACC_CREUSER",length=40)
 	 private String accCreUser;

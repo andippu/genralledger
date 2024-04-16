@@ -23,6 +23,10 @@ public class ControllerAccount {
 		return servAcc.getAccountList();
 	}
 	
+	@GetMapping("/msjur/getaccountdesc")
+	public String getAccountDesc(String ad){
+		return servAcc.getAccountDesc(ad);
+	}
 	
 
 }

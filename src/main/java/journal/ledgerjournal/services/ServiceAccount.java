@@ -19,5 +19,9 @@ public class ServiceAccount {
 	public List<Account> getAccountList(){
 		return repoAcc.findAll();
 	}
+	
+	public String getAccountDesc(String ad) {
+		return repoAcc.getAccDesc(ad);
+	}
 
 }
