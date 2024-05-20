@@ -18,7 +18,7 @@ public class GlJourMaster {
 	@Column(name="JOU_KEY",length=20,  nullable = false)
 	private String glJouKey;
 	
-	@Column(name="JOU_KEY",length=50,  nullable = false)
+	@Column(name="JOU_DESC",length=50,  nullable = false)
 	private String glJouDesc;
 	
 	@Column(name="JOU_ACC",length=20,  nullable = false)
