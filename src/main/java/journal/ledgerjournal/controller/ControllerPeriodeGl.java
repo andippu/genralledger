@@ -37,5 +37,25 @@ public class ControllerPeriodeGl {
 	public List<PeriodeGl> getPeriodGlList(){
 		return servPgl.getPeriodGlList();
 	}
+	
+	@GetMapping("/msjur/exeupljurvpm")
+	public String exeUpJurVpm() {
+		return servPgl.exeUpJurVpm();
+	}
+	
+	@GetMapping("/msjur/exeupljuruci")
+	 public String exeUpJurUci() {
+		 return servPgl.exeUpJurUci();
+	 }
+	 
+	@GetMapping("/msjur/exeupljurpnys")
+	 public String exeUpJurPnys() {
+		 return servPgl.exeUpJurPnys();
+	 }
+	 
+	@GetMapping("/msjur/exeupljurexpense")
+	 public String exeUpJurExpense() {
+		 return servPgl.exeUpJurExpense();
+	 }
 
 }

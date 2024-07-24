@@ -29,5 +29,21 @@ public class ServicePeriodeGl {
 	public List<PeriodeGl> getPeriodGlList(){
 		return repoPgl.findAll();
 	}
+	
+	public String exeUpJurVpm() {
+		return repoPgl.exeUpJurVpm();
+	}
+	
+	 public String exeUpJurUci() {
+		 return repoPgl.exeUpJurUci();
+	 }
+	 
+	 public String exeUpJurPnys() {
+		 return repoPgl.exeUpJurPnys();
+	 }
+	 
+	 public String exeUpJurExpense() {
+		 return repoPgl.exeUpJurExpense();
+	 }
 
 }

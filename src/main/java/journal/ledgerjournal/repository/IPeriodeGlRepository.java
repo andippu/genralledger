@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import journal.ledgerjournal.models.BebanSusut;
 import journal.ledgerjournal.models.PeriodeGl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,18 @@ public interface IPeriodeGlRepository extends JpaRepository<PeriodeGl, Date> {
 	
 	@Query(value="SELECT replace((to_char(max(PGL_DATE),'mmyyyy')),' ') FROM PERIODE_GL",nativeQuery = true)
 	String getGlPeriodShort();
+	
+	  @Procedure(procedureName = "P_CSV_JUEXPENSES")
+	  public String exeUpJurExpense();
+	  
+	  @Procedure(procedureName = "P_CSV_JUPNYS")
+	  public String exeUpJurPnys();
+	  
+	  @Procedure(procedureName = "P_CSV_JUUCI")
+	  public String exeUpJurUci();
+	  
+	  @Procedure(procedureName = "P_CSV_JUVPM")
+	  public String exeUpJurVpm();
 	
 	
 	
