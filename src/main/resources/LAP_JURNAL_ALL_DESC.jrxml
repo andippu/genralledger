@@ -3,18 +3,42 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LAP_JURNAL_ALL" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0345244f-96b8-4158-a370-d2fb5d23f78a">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
-	<field name="rjalVoucherNo" class="java.lang.String"/>
-	<field name="rjalHari" class="java.lang.String"/>
-	<field name="rjalPeriod" class="java.lang.String"/>
-	<field name="rjalPeriodMoth" class="java.lang.String"/>
-	<field name="rjalType" class="java.lang.String"/>
+	<parameter name="ptype" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT "RJAL_VOUCHERNO",
+	"RJAL_HARI",
+	"RJAL_PERIOD",
+	"RJAL_PERIODMONTH",
+	"RJAL_TYPE"
+FROM "RPT_JURNAL_ALL"]]>
+	</queryString>
+	<field name="RJAL_VOUCHERNO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RJAL_VOUCHERNO"/>
+		<property name="com.jaspersoft.studio.field.label" value="RJAL_VOUCHERNO"/>
+	</field>
+	<field name="RJAL_HARI" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RJAL_HARI"/>
+		<property name="com.jaspersoft.studio.field.label" value="RJAL_HARI"/>
+	</field>
+	<field name="RJAL_PERIOD" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RJAL_PERIOD"/>
+		<property name="com.jaspersoft.studio.field.label" value="RJAL_PERIOD"/>
+	</field>
+	<field name="RJAL_PERIODMONTH" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RJAL_PERIODMONTH"/>
+		<property name="com.jaspersoft.studio.field.label" value="RJAL_PERIODMONTH"/>
+	</field>
+	<field name="RJAL_TYPE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="RJAL_TYPE"/>
+		<property name="com.jaspersoft.studio.field.label" value="RJAL_TYPE"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
 		<band height="106" splitType="Stretch">
 			<staticText>
-				<reportElement x="210" y="5" width="140" height="17" uuid="9b7575bb-ed61-4ace-a55d-5077b699b970">
+				<reportElement x="255" y="5" width="140" height="17" uuid="9b7575bb-ed61-4ace-a55d-5077b699b970">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -23,18 +47,45 @@
 				<text><![CDATA[JURNAL TRANSAKSI]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="230" y="22" width="100" height="15" uuid="d20d6440-b61f-4ff3-837b-c1b817762624">
+				<reportElement x="275" y="22" width="100" height="15" uuid="d20d6440-b61f-4ff3-837b-c1b817762624">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[JURNAL UMUM]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="230" y="38" width="100" height="15" uuid="3b80ad83-c297-4d69-888a-4f5037e983d6">
+				<reportElement x="275" y="38" width="100" height="15" uuid="3b80ad83-c297-4d69-888a-4f5037e983d6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{rjalPeriodMoth}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{RJAL_PERIODMONTH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="34" y="53" width="100" height="15" uuid="d1353aab-600a-4640-be0b-5bbb439fcc80">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($P{ptype}.equals("VP-K")) ? 
+        "Keluar" :
+        ($P{ptype}.equals("VP-M")) ? 
+        "Masuk" :
+        ($P{ptype}.equals("K-PL")) ? 
+        "Kas Pluit Kecil" :
+         ($P{ptype}.equals("K-CK")) ? 
+        "Kas Pluit Cikande" :
+        ($P{ptype}.equals("PNYS")) ? 
+        "Penyesuaian" :
+        ($P{ptype}.equals("B-HD")) ? 
+        "Hutang Dagang" :
+         ($P{ptype}.equals("B-HL")) ? 
+        "Hutang Lain-Lain" :
+        ($P{ptype}.equals("PNJLK")) ? 
+        "Penjualan Klinik" :
+         ($P{ptype}.equals("PNJLU")) ? 
+        "Penjualan Umum" :
+        "ALL"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="53" width="34" height="15" uuid="db1e095a-1d52-4520-b39e-ac7ba8c63bf0">
@@ -43,11 +94,6 @@
 				<textElement verticalAlignment="Middle"/>
 				<text><![CDATA[Type  :]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="34" y="53" width="100" height="15" uuid="c1f62d2e-01f1-4d9b-a7f0-2c4ecf4a5cfd"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{rjalType}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="0" y="74" width="70" height="30" uuid="6b6198f3-7d84-4598-9ea1-246aba9de782">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -129,7 +175,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{rjalVoucherNo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{RJAL_VOUCHERNO}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="70" y="0" width="20" height="15" uuid="96427f73-db78-4079-9041-60261418eff9">
@@ -138,17 +184,17 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{rjalHari}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{RJAL_HARI}]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement x="90" y="0" width="460" height="15" uuid="d1b9d43b-59cb-4f62-9f21-0d52d94a153c"/>
 				<subreportParameter name="pvoucher">
-					<subreportParameterExpression><![CDATA[$F{rjalVoucherNo}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{RJAL_VOUCHERNO}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="phari">
-					<subreportParameterExpression><![CDATA[$F{rjalHari}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{RJAL_HARI}]]></subreportParameterExpression>
 				</subreportParameter>
-				<connectionExpression><![CDATA[java.sql.DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:orcl", "generalledger", "lp999")]]></connectionExpression>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["LAP_JURNAL_ALL_DTL_DESC.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
