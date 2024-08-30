@@ -18,6 +18,6 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface IReportJurnalSuppRepository extends JpaRepository<ReportJurnalSupp, ReportJurnalSuppCompKey>{
+public interface IReportJurnalSuppRepository extends JpaRepository<ReportJurnalSupp, String>{
   public List<ReportJurnalSupp> findByRjsuPeriodAndRjsuVoucherNoContaining(String period, String voucher);
 }

@@ -12,9 +12,11 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import journal.ledgerjournal.models.ReportBukuBesarAll;
 import journal.ledgerjournal.models.ReportJurnalAll;
+import journal.ledgerjournal.models.ReportJurnalSupp;
 import journal.ledgerjournal.models.ReportNeracaAll;
 import journal.ledgerjournal.repository.IReportBukuBesarAllRepository;
 import journal.ledgerjournal.repository.IReportJurnalAllRepository;
+import journal.ledgerjournal.repository.IReportJurnalSuppRepository;
 import journal.ledgerjournal.repository.IReportNeracaAllRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,8 @@ public class ServiceReportsGL {
 	IReportBukuBesarAllRepository repoRBBA;
 	@Autowired
 	IReportNeracaAllRepository repoRNAL;
+	@Autowired
+	IReportJurnalSuppRepository repojSUP;
 	
 	public void LapJurnalAll(String Period, String voucher, HttpServletResponse response) throws JRException, IOException {
 		List<ReportJurnalAll> RJALL= repoRJAll.findByRjalPeriodAndRjalVoucherNoContainingOrderByRjalVoucherNo(Period, voucher);
@@ -49,7 +53,8 @@ public class ServiceReportsGL {
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(RJALL);		
 		Map<String, Object> parameters = new HashMap<>();	
 		parameters.put("pvoucher", "aaa");	
-		parameters.put("phari", "01");	
+		parameters.put("phari", "01");
+		parameters.put("ptype", voucher);	
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
 	}
@@ -61,7 +66,8 @@ public class ServiceReportsGL {
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(RJALL);		
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("pvoucher", "aaa");	
-		parameters.put("phari", "01");	
+		parameters.put("phari", "01");
+		parameters.put("ptype", voucher);	
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
 	}
@@ -91,5 +97,18 @@ public class ServiceReportsGL {
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
 	}
+	
+	public void LapJurnalSupp(String Period, String voucher,  HttpServletResponse response) throws JRException, IOException {
+		List<ReportJurnalSupp> JSUP= repojSUP.findByRjsuPeriodAndRjsuVoucherNoContaining(Period, voucher);
+		File file = ResourceUtils.getFile("classpath:LAP_JURNAL_SUPP.jrxml");		
+		JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());		
+		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(JSUP);		
+		Map<String, Object> parameters = new HashMap<>();	
+		parameters.put("ptype", voucher);	
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
+	}
+	
+	
 
 }

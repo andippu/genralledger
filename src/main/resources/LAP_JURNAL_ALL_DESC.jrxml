@@ -4,34 +4,11 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<parameter name="ptype" class="java.lang.String"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT "RJAL_VOUCHERNO",
-	"RJAL_HARI",
-	"RJAL_PERIOD",
-	"RJAL_PERIODMONTH",
-	"RJAL_TYPE"
-FROM "RPT_JURNAL_ALL"]]>
-	</queryString>
-	<field name="RJAL_VOUCHERNO" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RJAL_VOUCHERNO"/>
-		<property name="com.jaspersoft.studio.field.label" value="RJAL_VOUCHERNO"/>
-	</field>
-	<field name="RJAL_HARI" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RJAL_HARI"/>
-		<property name="com.jaspersoft.studio.field.label" value="RJAL_HARI"/>
-	</field>
-	<field name="RJAL_PERIOD" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RJAL_PERIOD"/>
-		<property name="com.jaspersoft.studio.field.label" value="RJAL_PERIOD"/>
-	</field>
-	<field name="RJAL_PERIODMONTH" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RJAL_PERIODMONTH"/>
-		<property name="com.jaspersoft.studio.field.label" value="RJAL_PERIODMONTH"/>
-	</field>
-	<field name="RJAL_TYPE" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RJAL_TYPE"/>
-		<property name="com.jaspersoft.studio.field.label" value="RJAL_TYPE"/>
-	</field>
+	<field name="rjalVoucherNo" class="java.lang.String"/>
+	<field name="rjalHari" class="java.lang.String"/>
+	<field name="rjalPeriod" class="java.lang.String"/>
+	<field name="rjalPeriodMoth" class="java.lang.String"/>
+	<field name="rjalType" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -58,7 +35,7 @@ FROM "RPT_JURNAL_ALL"]]>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{RJAL_PERIODMONTH}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rjalPeriodMoth}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="34" y="53" width="100" height="15" uuid="d1353aab-600a-4640-be0b-5bbb439fcc80">
@@ -175,7 +152,7 @@ FROM "RPT_JURNAL_ALL"]]>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RJAL_VOUCHERNO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rjalVoucherNo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="70" y="0" width="20" height="15" uuid="96427f73-db78-4079-9041-60261418eff9">
@@ -184,17 +161,17 @@ FROM "RPT_JURNAL_ALL"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RJAL_HARI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rjalHari}]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement x="90" y="0" width="460" height="15" uuid="d1b9d43b-59cb-4f62-9f21-0d52d94a153c"/>
 				<subreportParameter name="pvoucher">
-					<subreportParameterExpression><![CDATA[$F{RJAL_VOUCHERNO}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{rjalVoucherNo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="phari">
-					<subreportParameterExpression><![CDATA[$F{RJAL_HARI}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{rjalHari}]]></subreportParameterExpression>
 				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<connectionExpression><![CDATA[java.sql.DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:orcl", "generalledger", "lp999")]]></connectionExpression>
 				<subreportExpression><![CDATA["LAP_JURNAL_ALL_DTL_DESC.jasper"]]></subreportExpression>
 			</subreport>
 		</band>

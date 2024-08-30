@@ -4,31 +4,11 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
 	<parameter name="ptype" class="java.lang.String"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT "RJSU_VOUCHER",
-	"RJSU_DATE",
-	"RSJU_PERIODMONTH",
-	"RSJU_PERIOD",
-	"RJSU_TYPE"
-FROM "RPT_JURNAL_SUP"]]>
-	</queryString>
-	<field name="RJSU_VOUCHER" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RJSU_VOUCHER"/>
-		<property name="com.jaspersoft.studio.field.label" value="RJSU_VOUCHER"/>
-	</field>
-	<field name="RJSU_DATE" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RJSU_DATE"/>
-		<property name="com.jaspersoft.studio.field.label" value="RJSU_DATE"/>
-	</field>
-	<field name="RSJU_PERIODMONTH" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RSJU_PERIODMONTH"/>
-		<property name="com.jaspersoft.studio.field.label" value="RSJU_PERIODMONTH"/>
-	</field>
-	<field name="RSJU_PERIOD" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="RSJU_PERIOD"/>
-		<property name="com.jaspersoft.studio.field.label" value="RSJU_PERIOD"/>
-	</field>
-	<field name="RJSU_TYPE" class="java.lang.String"/>
+	<field name="rjsuVoucherNo" class="java.lang.String"/>
+	<field name="rjsuDate" class="java.lang.String"/>
+	<field name="rjsuPeriodMonth" class="java.lang.String"/>
+	<field name="rjsuPeriod" class="java.lang.String"/>
+	<field name="rjsuType" class="java.lang.String"/>
 	<variable name="VTYPE" class="java.lang.String">
 		<variableExpression><![CDATA[(($P{ptype}.equals("VP-K%"))? "Keluar:"  : "Masuk")]]></variableExpression>
 	</variable>
@@ -44,7 +24,7 @@ FROM "RPT_JURNAL_SUP"]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RSJU_PERIODMONTH}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rjsuPeriodMonth}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="-9" y="33" width="39" height="15" uuid="30b61aee-6ccc-4553-b3c0-5edc225b9353">
@@ -207,7 +187,7 @@ FROM "RPT_JURNAL_SUP"]]>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RJSU_VOUCHER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rjsuVoucherNo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="71" y="0" width="20" height="15" uuid="087c802c-56f2-4132-ba15-5df7b526be10">
@@ -216,20 +196,20 @@ FROM "RPT_JURNAL_SUP"]]>
 				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{RJSU_DATE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rjsuDate}]]></textFieldExpression>
 			</textField>
 			<subreport>
 				<reportElement x="90" y="0" width="460" height="13" uuid="a6ce7f63-9f1b-4a91-9c09-596237f59466"/>
 				<subreportParameter name="pvoucher">
-					<subreportParameterExpression><![CDATA[$F{RJSU_VOUCHER}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{rjsuVoucherNo}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="pdate">
-					<subreportParameterExpression><![CDATA[$F{RJSU_DATE}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{rjsuDate}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="pperiod">
-					<subreportParameterExpression><![CDATA[$F{RSJU_PERIOD}]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[$F{rjsuPeriod}]]></subreportParameterExpression>
 				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<connectionExpression><![CDATA[java.sql.DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:orcl", "generalledger", "lp999")]]></connectionExpression>
 				<subreportExpression><![CDATA["LAP_JURNAL_SUPP_DTL.jasper"]]></subreportExpression>
 			</subreport>
 		</band>

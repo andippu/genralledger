@@ -79,5 +79,16 @@ public class ControllerReportsGL {
 	       response.setHeader(headerKey, headerValue);
 	       servGL.LapNeracaAll(period, ac1, ac2, response);
 	    }
+	 
+	 @GetMapping("/pdf/reportJurnalSup")
+	 public void JurnalSuppPDF(String Period, String voucher, HttpServletResponse response) throws IOException, JRException {
+	       response.setContentType("application/pdf");
+	       DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
+	       String currentDateTime = dateFormatter.format(new Date());
+	       String headerKey = "Content-Disposition";
+	       String headerValue = "attachment; filename=Jurnal All " + currentDateTime + ".pdf";
+	       response.setHeader(headerKey, headerValue);
+	       servGL.LapJurnalSupp(Period, voucher,  response);
+	   }
 
 }
