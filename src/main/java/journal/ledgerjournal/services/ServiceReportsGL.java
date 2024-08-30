@@ -85,6 +85,19 @@ public class ServiceReportsGL {
 		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
 	}
 	
+	public void LapBukuBesarHutang(String Period, String ac1, String ac2,  HttpServletResponse response) throws JRException, IOException {
+		String temp=repoRBBA.getBukuBesarHutang(Period, ac1, ac2);
+		List<ReportBukuBesarAll> RBBH= repoRBBA.findAll();
+		File file = ResourceUtils.getFile("classpath:LAP_BK_BESAR_ALL.jrxml");		
+		JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());		
+		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(RBBH);		
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("pvoucher", "aaa");	
+		parameters.put("phari", "01");	
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
+	}
+	
 	public void LapNeracaAll(String period, String ac1, String ac2,  HttpServletResponse response) throws JRException, IOException {
 		System.out.println(period+ " - "+ac1+" - "+ac2);
 		String temp=repoRNAL.getNeracaAll(period, ac1, ac2);

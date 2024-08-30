@@ -19,6 +19,9 @@ public interface IReportBukuBesarAllRepository  extends JpaRepository<ReportBuku
 	  @Procedure(procedureName = "P_RPT_BUKU_BESAR")
 	  String getBukuBesarAll(String period, String ac1, String ac2);
 	  
+	  @Procedure(procedureName = "P_RPT_BUKU_BESAR_HUTANG")
+	  String getBukuBesarHutang(String period, String ac1, String ac2);
+	  
 	  
 
 }
