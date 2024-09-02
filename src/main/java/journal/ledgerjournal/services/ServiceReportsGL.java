@@ -111,6 +111,14 @@ public class ServiceReportsGL {
 		JasperExportManager.exportReportToPdfStream(jasperPrint,response.getOutputStream());
 	}
 	
+	public String getTbToExcel(String period, String ac1, String ac2) {
+		return repoRNAL.getTbToExcel(period, ac1, ac2);
+	}
+	
+	public String getTbToExcelAll(String period, String ac1, String ac2) {
+		return repoRNAL.getTbToExcelAll(period, ac1, ac2);
+	}
+	
 	public void LapJurnalSupp(String Period, String voucher,  HttpServletResponse response) throws JRException, IOException {
 		List<ReportJurnalSupp> JSUP= repojSUP.findByRjsuPeriodAndRjsuVoucherNoContaining(Period, voucher);
 		File file = ResourceUtils.getFile("classpath:LAP_JURNAL_SUPP.jrxml");		

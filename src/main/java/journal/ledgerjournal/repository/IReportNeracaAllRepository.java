@@ -17,4 +17,12 @@ import java.util.List;
 public interface IReportNeracaAllRepository extends JpaRepository<ReportNeracaAll, BigDecimal>{
 	@Procedure(procedureName = "P_RPT_NERACA_ALL")
 	String getNeracaAll(String period, String ac1, String ac2);
+	
+	@Procedure(procedureName = "P_TRIAL_BALANCED")
+	String getTbToExcel(String period, String ac1, String ac2);
+	
+	@Procedure(procedureName = "P_TRIAL_BALANCED_ALL")
+	String getTbToExcelAll(String period, String ac1, String ac2);
+	
+	
 }
